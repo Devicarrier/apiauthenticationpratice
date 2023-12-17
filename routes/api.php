@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiAuthenticationController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+/**Authentication */
 Route::post('/register', [ApiAuthenticationController::class,'register']);
 Route::post('/login', [ApiAuthenticationController::class,'login']);
 Route::get('/detail', [ApiAuthenticationController::class,'detail'])->middleware('auth:sanctum');
+/** Employee  */
+Route::get('employees',[EmployeeController::class,'index']);
+Route::post('employees-store',[EmployeeController::class,'store']);
+Route::get('employees-show/{id}',[EmployeeController::class,'show']);
+Route::post('employees-update/{id}',[EmployeeController::class,'update']);
+Route::delete('employees-delete/{id}',[EmployeeController::class,'destroy']);
 
